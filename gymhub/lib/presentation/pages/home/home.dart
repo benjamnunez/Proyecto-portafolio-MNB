@@ -7,7 +7,7 @@ class Inicio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
+    
       body: Container(
         decoration: BoxDecoration(
         color: Color(0xFF1F2836),
