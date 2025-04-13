@@ -19,7 +19,7 @@ Widget build(BuildContext context) {
 
   return Scaffold(
     key: _scaffoldKey,
-    drawer: isSmallScreen ? MenuLateralWidget(currentRoute: '/usuario') : null,
+    drawer: isSmallScreen ? MenuLateralWidget(currentRoute: '/usuarios') : null,
     body: Container(
       decoration: BoxDecoration(
         color: Color(0xFF1F2836),
@@ -31,7 +31,7 @@ Widget build(BuildContext context) {
         children: [
           // Sidebar solo en pantallas grandes
           if (!isSmallScreen)
-            MenuLateralWidget(currentRoute: '/usuario'),
+            MenuLateralWidget(currentRoute: '/usuarios'),
 
           // Contenido principal
           Expanded(
