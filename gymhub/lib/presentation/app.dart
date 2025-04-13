@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gymhub/presentation/pages/home/home.dart';
 import 'package:gymhub/presentation/pages/usuario/user.dart';
+import 'package:gymhub/presentation/pages/planes/planes.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/inicio': (_) =>  Inicio(),
         '/usuarios':(_) => UserApp(),
+        '/planes':(_) => Planes(),
         
       },
     );
