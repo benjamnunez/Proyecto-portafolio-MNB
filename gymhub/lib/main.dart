@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gymhub/marco/inicio/inicio.dart';
 import 'package:gymhub/supabase_config.dart';
 import 'package:gymhub/marco/login/login.dart';
 
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'GymHub',
       home: LoginPage(),
+      routes: {
+        '/inicio': (_) =>  Inicio(),        
+      },
     );
   }
 }

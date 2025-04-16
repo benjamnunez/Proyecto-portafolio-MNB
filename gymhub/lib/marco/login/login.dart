@@ -78,37 +78,77 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Entrar / Crear cuenta'),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(text: 'Entrar'),
-            Tab(text: 'Crear cuenta'),
-          ],
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          _buildLoginForm(),
-          _buildSignUpForm(),
-        ],
-      ),
-    );
+      return Scaffold(
+        backgroundColor: Color(0xFF1A1F23),
+        body: 
+          Center(
+                child: 
+                  Container(
+                    width: 400,
+                    decoration: BoxDecoration(
+                        color: Color(0xFF1A1F23),
+                        borderRadius: BorderRadius.circular(10.0),
+                        border: Border.all(
+                          color: const Color.fromARGB(100, 205, 205, 205),
+                        ),
+                  ),
+                    child: 
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                            'assets/images/logo/logoTransparenteGymHubBlanco.png',
+                            width: 200, // ajusta según tus necesidades
+                            height: 200, // ajusta según tus necesidades
+                          ),
+                        TabBar(
+                              controller: _tabController,
+                              tabs: [
+                                Tab(text: 'Entrar', ),
+                                Tab(text: 'Crear cuenta'),
+                              ],
+                              labelColor: Colors.white,
+                              indicatorColor: Colors.white,
+                            ),
+                        SizedBox(
+                          height: 200,
+                          child: TabBarView(
+                            controller: _tabController,
+                            children: [
+                              _buildLoginForm(),
+                              _buildSignUpForm(),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text("¿Olvidaste tu contraseña?", style: TextStyle(color: Colors.white),),
+                            SizedBox(width: 8),
+                            Text("> Haz clic aquí <",style: TextStyle(color: Colors.white),)
+                          ],
+                        ),
+                        SizedBox(height: 16),
+                      ],
+                    ),
+                  ),
+              ),
+      );
   }
 
   Widget _buildLoginForm() {
     return Form(
       key: _loginFormKey,
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(labelText: 'Email', labelStyle: TextStyle(color: Colors.white)),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor ingrese un correo electrónico';
@@ -118,7 +158,8 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
             ),
             TextFormField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Contraseña'),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(labelText: 'Contraseña',labelStyle: TextStyle(color: Colors.white)),
               obscureText: true,
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -142,12 +183,14 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
     return Form(
       key: _signUpFormKey,
       child: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
               controller: _emailController,
-              decoration: InputDecoration(labelText: 'Email'),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(labelText: 'Email',labelStyle: TextStyle(color: Colors.white)),
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Por favor ingrese un correo electrónico';
@@ -157,7 +200,8 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
             ),
             TextFormField(
               controller: _passwordController,
-              decoration: InputDecoration(labelText: 'Contraseña'),
+              style: TextStyle(color: Colors.white),
+              decoration: InputDecoration(labelText: 'Contraseña',labelStyle: TextStyle(color: Colors.white)),
               obscureText: true,
               validator: (value) {
                 if (value == null || value.isEmpty) {

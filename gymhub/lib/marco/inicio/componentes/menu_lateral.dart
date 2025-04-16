@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gymhub/marco/inicio/componentes/menu_items.dart';
-
+import 'menu_items.dart';
 class MenuLateralWidget extends StatelessWidget {
   final String currentRoute;
 
@@ -94,7 +93,7 @@ class MenuLateralWidget extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            backgroundImage: NetworkImage('https://picsum.photos/seed/596/600'),
+            backgroundImage: AssetImage('assets/images/logo/logoTransparenteGymHubBlanco.png',),
           ),
           SizedBox(width: 8),
           Expanded(
