@@ -1,24 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:gymhub/presentation/pages/home/home.dart';
+import 'package:gymhub/presentation/pages/home/inicio.dart';
 import 'package:gymhub/presentation/pages/usuario/user.dart';
+import 'package:gymhub/presentation/pages/ajustes/ajustes.dart';
+import 'package:gymhub/services/supabase_config.dart';
+import 'package:gymhub/presentation/pages/login/login.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  await SupabaseConfig.initialize();
+
+
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'GymHub',
+      
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: '/inicio',
+      initialRoute: '/login',
       routes: {
-        '/inicio': (_) =>  Inicio(),
-        '/usuarios':(_) => UserApp(),
-        
+        '/login': (_) => LoginPage(),
+        '/inicio': (_) => Inicio(),
+        '/usuarios': (_) => UserApp(),
+        '/ajustes': (_) => Ajustes(),
       },
     );
   }
