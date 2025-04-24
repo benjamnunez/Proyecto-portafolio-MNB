@@ -1,97 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:gymhub/presentation/widgets/menu_responsive.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:gymhub/services/supabase_user.dart';
 
-class UserApp extends StatefulWidget {
-  const UserApp({super.key});
-
-  
+class UserScreen extends StatelessWidget {
   @override
-  State<UserApp> createState() => _UserAppState();
-}
-
-class _UserAppState extends State<UserApp> {
-  @override
-Widget build(BuildContext context) {
-double screenWidth = MediaQuery.of(context).size.width;
-final bool isSmallScreen = screenWidth <= 767;
-
-  return ResponsiveScaffold(
-    currentRoute: '/usuarios',
-    body: Container(
-      padding: EdgeInsets.all(screenWidth * 0.05),
-      decoration: BoxDecoration(
-        color: Color(0xFF1F2836),
-        border: Border.all(
-          color: const Color.fromARGB(100, 205, 205, 205),
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Usuarios")),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () => _mostrarFormulario(context),
+          child: Text("Crear Usuario"),
         ),
       ),
-      child: Column(
-  children: [
-    Padding(
-      padding: const EdgeInsets.all(10),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text('Usuarios', style: TextStyle(color: Colors.white, fontSize: 20)),
-          ElevatedButton.icon(
-            onPressed: () {},
-            icon: Icon(Icons.add, color: Colors.white),
-            label: Text('Añadir usuario', style: TextStyle(color: Colors.white)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFFF8A958),
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              textStyle: TextStyle(fontSize: 16),
-            ),
-          ),
-        ],
-      ),
-    ),
+    );
+  }
 
-    Container(
-      padding: EdgeInsets.all(25),
-      decoration: BoxDecoration(
-        color: Color(0xFF1F2836),
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(color: Colors.black26,
-          blurRadius: 4,
-          offset: Offset(2, 2)
+  void _mostrarFormulario(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        final nombreController = TextEditingController();
+        final apellidoController = TextEditingController();
+        final emailController = TextEditingController();
+        final rutController = TextEditingController();
+        final dvController = TextEditingController();
+        final fechaNacController = TextEditingController();
+        final numeroController = TextEditingController();
+        final direccionController = TextEditingController();
+
+        return AlertDialog(
+          title: Text("Nuevo Usuario"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(controller: nombreController, decoration: InputDecoration(labelText: "Nombre")),
+              TextField(controller: apellidoController, decoration: InputDecoration(labelText: "Apellido")),
+              TextField(controller: emailController, decoration: InputDecoration(labelText: "Email")),
+              TextField(controller: rutController, decoration: InputDecoration(labelText: "RUT")),
+              TextField(controller: dvController, decoration: InputDecoration(labelText: "DV")),
+              TextField(controller: fechaNacController, decoration: InputDecoration(labelText: "Fecha de Nacimiento")),
+              TextField(controller: numeroController, decoration: InputDecoration(labelText: "Número")),
+              TextField(controller: direccionController, decoration: InputDecoration(labelText: "Dirección")),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextField(
-          decoration: InputDecoration(
-            labelText: 'Buscar',
-            hintText: 'Ingrese nombre',
-            border: OutlineInputBorder(),
-            prefixIcon: Icon(Icons.search),
-            
-            )
-          ),
-        SizedBox(height: 30),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text("NOMBRE", style: TextStyle(color: Colors.white)),
-            Text("CORREO",style: TextStyle(color: Colors.white)),
-            Row(
-              children: [
-                IconButton(onPressed: () {}, icon: Icon(Icons.edit, color: Colors.white)),
-              ],
-              
-            )
-            
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                SupabaseUser.agregarUsuario(
+                  nombreController.text,
+                  apellidoController.text,
+                  rutController.text,
+                  dvController.text,
+                  fechaNacController.text,
+                  emailController.text,
+                  numeroController.text,
+                  direccionController.text,
+                );
+                Navigator.pop(context);
+              },
+              child: Text("Guardar"),
+            ),
           ],
-        )
-      ],
-    ),
-  )
-]  
-),
-)
-);
-}
+        );
+      },
+    );
+  }
 }

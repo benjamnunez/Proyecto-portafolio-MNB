@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'menu_items.dart';
+import 'package:gymhub/services/services.dart'; // Asegúrate que el path sea correcto
+
 class MenuLateralWidget extends StatelessWidget {
   final String currentRoute;
 
@@ -18,7 +21,6 @@ class MenuLateralWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Logo y otros elementos fijos del menú
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10.0),
             child: Text(
@@ -31,14 +33,13 @@ class MenuLateralWidget extends StatelessWidget {
             thickness: 2.0,
             color: const Color.fromARGB(100, 205, 205, 205),
           ),
-          // Lista de elementos del menú
           Expanded(
             child: ListView(
               children: menuItems.map((item) => _buildMenuItem(context, item)).toList(),
             ),
           ),
-          // Perfil de usuario
           _buildUserProfile(context),
+          _buildLogoutButton(context),
         ],
       ),
     );
@@ -65,20 +66,12 @@ class MenuLateralWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 6.0),
           child: Row(
             children: [
-              Icon(
-                item.icon,
-                color: isSelected ? activeColor : inactiveColor,
-                size: 24.0,
-              ),
+              Icon(item.icon, color: isSelected ? activeColor : inactiveColor, size: 24.0),
               SizedBox(width: 8),
-              Text(
-                item.title,
-                style: TextStyle(
-                  fontFamily: 'Inter',
-                  color: isSelected ? activeColor : inactiveColor,
-                  letterSpacing: 0.0,
-                ),
-              ),
+              Text(item.title,
+                  style: TextStyle(
+                      fontFamily: 'Inter',
+                      color: isSelected ? activeColor : inactiveColor)),
             ],
           ),
         ),
@@ -87,7 +80,6 @@ class MenuLateralWidget extends StatelessWidget {
   }
 
   Widget _buildUserProfile(BuildContext context) {
-    // Implementa aquí el perfil de usuario que está al final del menú
     return Padding(
       padding: EdgeInsets.all(8.0),
       child: Row(
@@ -107,6 +99,29 @@ class MenuLateralWidget extends StatelessWidget {
           ),
           Icon(Icons.keyboard_arrow_down_rounded, color: Colors.white),
         ],
+      ),
+    );
+  }
+
+  Widget _buildLogoutButton(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
+      child: InkWell(
+        onTap: () => AuthService.logout(context), // Aquí se llama al servicio
+        child: Container(
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+          decoration: BoxDecoration(
+            color: Color(0xFF2D3748),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Row(
+            children: [
+              Icon(Icons.logout, color: Colors.redAccent),
+              SizedBox(width: 8),
+              Text('Cerrar sesión', style: TextStyle(color: Colors.redAccent)),
+            ],
+          ),
+        ),
       ),
     );
   }

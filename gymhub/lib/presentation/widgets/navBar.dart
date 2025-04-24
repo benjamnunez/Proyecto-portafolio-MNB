@@ -5,13 +5,11 @@ class CustomNavbar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16.0),
-      child:Container(
+    return Container(
       decoration: BoxDecoration(
         color: const Color(0xFF1F2836),
         borderRadius: BorderRadius.circular(10.0),
-    ),
+      ),
       padding: const EdgeInsets.all(10),
       width: MediaQuery.sizeOf(context).width * 1.0,
       height: 100,
@@ -57,9 +55,8 @@ class CustomNavbar extends StatelessWidget {
             icon: const Icon(Icons.keyboard_arrow_down, color: Colors.white),
             onPressed: () {},
           ),
-          
         ],
       ),
-    ));
+    );
   }
 }
