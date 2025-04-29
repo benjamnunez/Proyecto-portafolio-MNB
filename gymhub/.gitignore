@@ -45,4 +45,4 @@ app.*.map.json
 /android/app/release
 
 #Base
-gymhub\lib\services\supabase_config.dart
+gymhub/lib/services/supabase_config.dart
