@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gymhub/presentation/widgets/menu_lateral.dart';
 
+
 class ResponsiveScaffold extends StatelessWidget {
   final Widget body;
   final String currentRoute;
+  
 
   const ResponsiveScaffold({
     Key? key,
@@ -19,7 +21,7 @@ class ResponsiveScaffold extends StatelessWidget {
     return Scaffold(
       appBar: isSmallScreen
           ? AppBar(
-              title: Text(currentRoute.toUpperCase().replaceFirst('/', ''), style: TextStyle(color: Color(0xFFF8A958)),),//Se hace que el titulo sea el nombre de la ruta para pantallas pequeñas.
+              title: Text(currentRoute.toUpperCase().replaceFirst('/', ''), style: TextStyle(color: Color(0xFFF8A958)),),
               backgroundColor: Color(0xFF1F2836),
               iconTheme: IconThemeData(color: Colors.white),
             )
@@ -36,6 +38,6 @@ class ResponsiveScaffold extends StatelessWidget {
           Expanded(child: body), // Contenido principal
         ],
       ),
-);
-}
+    );
+  }
 }
